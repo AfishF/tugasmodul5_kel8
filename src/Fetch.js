@@ -1,10 +1,19 @@
 import React, { Component } from "react";
+import { Row, Col, Card, Avatar, Button, Modal } from "antd";
 import axios from "axios";
+import { UserOutlined } from '@ant-design/icons';
+import 'antd/dist/antd.css';
+
+const gridStyle = {
+    width: '25%',
+  };
+
 export default class Fetch extends Component {
     constructor(props) {
         super(props);
         this.state = {
             meth: [],
+            visible: false,
             char_id: 0,
             name: "",
             bithday: "",
@@ -15,6 +24,7 @@ export default class Fetch extends Component {
             portrayed: "",
         };
     }
+    
     handleButton = (title) => {
         alert(title);
     };
@@ -39,33 +49,41 @@ export default class Fetch extends Component {
     render() {
         return (
             <div>
-                <div className="boxWhite">
                     <center>
-                        <h1>List Breaking Bad Characters</h1>
+                        <h1>List of Breaking Bad Characters</h1>
                     </center>
                     {this.state.meth.map((results, index) => {
                         return (
-                            <div className="card" key={results.name}>
-                                <div className="card-body">
-                                    <img src={results.img}/>
-                                    <h3 className="card-title">{results.name}</h3>
-                                    <h5 className="card-title">Birthday : {results.birthday}</h5>
-                                    <h5 className="card-title">Status : {results.status}</h5>
-                                    <h5 className="card-title">Nickname : {results.nickname}</h5>
-                                    <h5 className="card-title">Occupation : {results.occupation}</h5>
-                                    <h5 className="card-title">Portrayed : {results.portrayed}</h5>
-                                </div>
-                                <button
-                                    className="button"
-                                    onClick={() => this.handleButton(results.name)}
-                                >
-                                    {" "}
-                                klik aku
-                                </button>
+                            <div className="site-card-wrapper" >    
+                                        <Card.Grid style={gridStyle}>
+                                            <center>
+                                            <Avatar src={results.img} size={256} icon={<UserOutlined />} />
+                                            <h2>{results.name}</h2>
+                                            </center>
+                                            <Row>
+                                                <Col span={12}><p>Birthday</p></Col>
+                                                <Col span={12}><p>: {results.birthday}</p></Col>
+                                            </Row>
+                                            <Row>
+                                                <Col span={12}><p>Status</p></Col>
+                                                <Col span={12}><p>: {results.status}</p></Col>
+                                            </Row>
+                                            <Row>
+                                                <Col span={12}><p>Nickname</p></Col>
+                                                <Col span={12}><p>: {results.nickname}</p></Col>
+                                            </Row>
+                                            <Row>
+                                                <Col span={12}><p>Occupation</p></Col>
+                                                <Col span={12}><p>: {results.occupation.join(', ')}</p></Col>
+                                            </Row>
+                                            <Row>
+                                                <Col span={12}><p>Portrayed</p></Col>
+                                                <Col span={12}><p>: {results.portrayed}</p></Col>
+                                            </Row>
+                                        </Card.Grid>
                             </div>
                         );
                     })}
-                </div>
             </div>
         );
     }

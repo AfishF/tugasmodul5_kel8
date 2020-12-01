@@ -27,15 +27,8 @@
 .App-link {
   color: #61dafb;
 }
-.navbar {
-  background-color: #000080;
-  font-size: 30px;
-  color: #ffffff;
-}
 
-.site-card-wrapper { padding: 30px; background: #ececec;
-  align-items: center;
-  justify-content: center;} [data-theme="dark"] .site-card-wrapper { background: #303030; }
+.site-card-wrapper { padding: 30px; background: #ececec; } [data-theme="dark"] .site-card-wrapper { background: #303030; }
 
 @keyframes App-logo-spin {
   from {
